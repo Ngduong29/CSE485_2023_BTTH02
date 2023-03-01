@@ -1,24 +1,24 @@
 <?php
 include("configs/DBConnection.php");
-include("models/Article.php");
-class ArticleService{
-    public function getAllArticles(){
+include("models/Author.php");
+class AuthorService{
+    public function getAllAuthors(){
         // 4 bước thực hiện
        $dbConn = new DBConnection();
        $conn = $dbConn->getConnection();
 
         // B2. Truy vấn
-        $sql = "SELECT * FROM baiviet INNER JOIN theloai ON baiviet.ma_tloai=theloai.ma_tloai";
+        $sql = "SELECT * FROM tacgia";
         $stmt = $conn->query($sql);
 
         // B3. Xử lý kết quả
-        $articles = [];
+        $authors = [];
         while($row = $stmt->fetch()){
-            $article = new article($row['ma_bviet'], $row['tieude'], $row['hinhanh']);
-            array_push($articles,$article);
+            $author = new Author($row['ma_tgia'], $row['ten_tgia'], $row['hinh_tgia']);
+            array_push($authors,$author);
         }
         // Mảng (danh sách) các đối tượng Article Model
 
-        return $articles;
+        return $authors;
     }
 }
