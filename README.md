@@ -7,3 +7,4 @@
   + Làm phần category 
 - Nguyễn Hoàng Dương:
   + Làm phần Home
+  + Làm phần author
