@@ -12,18 +12,18 @@ class Article{
     private $hinhanh;
 
     public function __construct($ma_bviet, $tieude, $ten_bhat ,$ten_tloai, $tomtat, $noidung, $ten_tgia, $ngayviet, $hinhanh){
+        $this->ma_bviet = $ma_bviet;
         $this->tieude = $tieude;
         $this->ten_bhat= $ten_bhat;     
         $this->ten_tloai = $ten_tloai;
         $this->tomtat = $tomtat;
-        $this -> noidung = $noidung;
+        $this ->noidung = $noidung;
         $this->ten_tgia = $ten_tgia;
         $this->ngayviet = $ngayviet;
         $this->hinhanh = $hinhanh;
     }
-
     // Setter và Getter
-    public function getTMa_bviet(){
+    public function getMa_bviet(){
         return $this->ma_bviet;
     }
     public function setMa_bviet($ma_bviet){
@@ -78,5 +78,3 @@ class Article{
         $this->hinhanh = $hinhanh;
     }
 }
-    ?>
-
