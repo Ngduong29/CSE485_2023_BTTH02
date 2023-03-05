@@ -57,15 +57,15 @@
     <div class="row">
         <div class="col-sm">
             <h3 class="text-center text-uppercase fw-bold">Thêm mới tác giả</h3>
-            <form action="index.php?controller=author&action=add" method="post">
+            <form action="index.php?controller=author&action=add" method="post" enctype="multipart/form-data">
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text" id="lblatName">Tên tác giả</span>
                     <input type="text" class="form-control" name="ten_tgia">
                 </div>
 
-                <div class="input-group mt-3 mb-3">
-                    <span class="input-group-text" id="lblatName">Hình tác giả</span>
-                    <input type="text" class="form-control" name="hinh_tgia">
+                <div class="form-group mt-3 mb-3">
+                    <label>Hình tác giả</label>
+                    <input type="file" class="form-control" name="hinh_tgia" >
                 </div>
 
                 <div class="form-group  float-end ">

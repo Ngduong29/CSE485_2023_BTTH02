@@ -70,31 +70,33 @@
                     <tbody>
                         <?php
                         $count = 0;
-                        foreach($authors as $author){
+                        foreach ($authors as $author) {
                             $count++;
-                                ?>
-                                <tr>
-                                    <th scope="row">
-                                        <?= $count ?>
-                                    </th>
-                                    <td>
-                                        <?= $author->getTen_tgia() ?>
-                                    </td>
-                                    <td>
-                                        <?= $author->getHinh_tgia() ?>
-                                    </td>
-                                    <td>
-                                        <a href="index.php?controller=author&action=edit&id=<?= $author->getMa_tgia() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    </td>
-                                    <td>
-                                        <a onclick="return confirm('Ban co muon xoa khong');"
-                                            href="/btth02v2/index.php?controller=author&action=delete&id= <?= $author->getMa_tgia() ?>"><i class="fa-solid fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                            ?>
+                            <tr>
+                                <th scope="row">
+                                    <?= $count ?>
+                                </th>
+                                <td>
+                                    <?= $author->getTen_tgia() ?>
+                                </td>
+                                <td>
+                                    <img style="width: 100px;"src="/CSE485_2023_BTTH02/views/images/authors/<?php echo $author->getHinh_tgia(); ?>"> 
+                                </td>
+                                <td>
+                                    <a href="index.php?controller=author&action=edit&id=<?= $author->getMa_tgia() ?>"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
+                                </td>
+                                <td>
+                                    <a onclick="return confirm('Ban co muon xoa khong');"
+                                        href="/CSE485_2023_BTTH02/index.php?controller=author&action=delete&id= <?= $author->getMa_tgia() ?>"><i
+                                            class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
 
-                                <?php
-                            }
-                        
+                            <?php
+                        }
+
                         ?>
 
                     </tbody>

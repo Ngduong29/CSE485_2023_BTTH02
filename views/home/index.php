@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <div class="my-logo">
                     <a class="navbar-brand" href="#">
-                        <img src="/images/logo2.png" alt="" class="img-fluid">
+                        <img src="/CSE485_2023_BTTH02/views/images/logo2.png" alt="" class="img-fluid">
                     </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,10 +23,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./index.php">Trang chủ</a>
+                    <a class="nav-link active" aria-current="page" href="<?php echo 'http://localhost:8080/CSE485_2023_BTTH02'; ?>">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="./login.php">Đăng nhập</a>
+                    <a class="nav-link" href="<?php echo 'http://localhost:8080/CSE485_2023_BTTH02'.'/index.php?controller=home&action=login'; ?>">Đăng nhập</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -45,13 +45,13 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                <img src="/images/slideshow/slide01.jpg" class="d-block w-100" alt="...">
+                <img src="/CSE485_2023_BTTH02/views/images/slideshow/slide01.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                <img src="/images/slideshow/slide02.jpg" class="d-block w-100" alt="...">
+                <img src="/CSE485_2023_BTTH02/views/images/slideshow/slide02.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                <img src="/images/slideshow/slide03.jpg" class="d-block w-100" alt="...">
+                <img src="/CSE485_2023_BTTH02/views/images/slideshow/slide03.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -62,13 +62,23 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-            
             </div>
     </header>
     <main class="container-fluid mt-3">
     <h3 class="text-center text-uppercase mb-3 text-primary">TOP bài hát yêu thích</h3>
         <div class="row">
-        <a class="nav-link" href="index.php?controller=author&action=list">Tác giả</a>
+            <?php foreach ($articles as $article) {?>
+                <div class="col-sm-3">
+                <div class="card mb-2" style="width: 100%;">
+                    <img src="/CSE485_2023_BTTH02/views/images/songs/<?php echo $article->getHinhanh()?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            <a href="./index.php?controller=home&action=detail&id=<?php echo $article->getMa_bviet()?>" class="text-decoration-none"><?php echo $article->getTen_bhat()?></a>
+                        </h5>
+                    </div>
+                </div>
+            </div>      
+            <?php } ?>
     </main>
      <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
