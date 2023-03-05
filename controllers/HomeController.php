@@ -28,7 +28,7 @@ class HomeController
                 if ($pass_hash = $password) {
                     if ($role == 'admin') {
                         $_SESSION['admin'] = $_POST['username'];
-                        header('location:/CSE485_2023_BTTH02/index.php?controller=article&action=list');
+                        header('location:/CSE485_2023_BTTH02/index.php?controller=admin&action=list');
                     } else {
                         echo 'mật khẩu không chính xác';
                     }
