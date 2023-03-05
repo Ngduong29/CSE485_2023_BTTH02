@@ -57,21 +57,27 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin tác giả</h3>
-                <?php foreach ($findAuthor as $author): extract($author); ?>
-                <form action="index.php?controller=author&action=edit&id=<?=$ma_tgia ?>" method="post">
+                <?php foreach ($findAuthor as $author){ ?>
+                <form action="index.php?controller=author&action=edit&id=<?=$author->getMa_tgia() ?>" method="post" enctype="multipart/form-data">
                         <div class="input-group mt-3 mb-3">
                             <span class="input-group-text" id="lblTgId">Mã tác giả</span>
                             <input type="text" class="form-control" name="ma_tgia" id="ma_tgia"
-                                value="<?= $ma_tgia ?>" readonly>
+                                value="<?= $author->getMa_tgia()  ?>" readonly>
                         </div>
 
                         <div class="input-group mt-3 mb-3">
                             <span class="input-group-text" id="lblTgName">Tên tác giả</span>
                             <input type="text" class="form-control" name="ten_tgia" id="ten_gia"
-                                value="<?= $ten_tgia ?>" style="border-top-right-radius: 7px; border-bottom-right-radius:7px"> 
-                       </div>                     
-                        <?php endforeach; ?>
-                        <div class="form-group float-end">
+                                value="<?= $author->getTen_tgia()  ?>" style="border-top-right-radius: 7px; border-bottom-right-radius:7px"> 
+                        </div>  
+
+                        <div class="form-group mt-3 mb-3">
+                            <label>Hình tác giả</label>
+                            <img style="width: 100px;" src="/CSE485_2023_BTTH02/views/images/authors/<?= $author->getHinh_tgia()  ?>">
+                            <input type="file" class="form-control" name="hinh_tgia">
+                        </div>
+                        <?php } ?>
+                        <div class="form-group  float-end ">
                             <input type="submit" name="save" value="Lưu lại" class="btn btn-success">
                             <a href="index.php?controller=author&action=list" class="btn btn-warning ">Quay lại</a>
                         </div>

@@ -22,11 +22,11 @@ class AuthorService{
         return $authors;
     }
 
-    public function addAuthor($ten_tgia){
+    public function addAuthor($ten_tgia, $hinh_tgia){
         $dbConn = new DBConnection();
         $conn = $dbConn->getConnection();
 
-        $sql = "insert into tacgia (ten_tgia) values('$ten_tgia');";
+        $sql = "insert into tacgia (ten_tgia, hinh_tgia) values('$ten_tgia', '$hinh_tgia');";
         
         $result = $conn->query($sql);
         if($result){
@@ -43,14 +43,20 @@ class AuthorService{
 
         $sql = "SELECT * FROM tacgia WHERE ma_tgia = '$ma_tgia'";
         $result = $conn ->query($sql);
-        return $result;
+
+        $findAuthor = [];
+        while($row = $result->fetch()){
+            $author = new Author($row['ma_tgia'], $row['ten_tgia'], $row['hinh_tgia']);
+            array_push($findAuthor,$author);
+        }
+        return $findAuthor;
 
     }
-    public function editAuthor($ma_tgia, $ten_tgia){
+    public function editAuthor($ma_tgia, $ten_tgia, $hinh_tgia){
         $dbConn = new DBConnection();
         $conn = $dbConn->getConnection();
 
-        $sql = "UPDATE tacgia SET ten_tgia = '$ten_tgia' Where ma_tgia = '$ma_tgia'";
+        $sql = "UPDATE tacgia SET ten_tgia = '$ten_tgia', hinh_tgia = '$hinh_tgia' Where ma_tgia = '$ma_tgia'";
 
         $result = $conn -> query($sql);
         if($result){
