@@ -73,5 +73,17 @@ class ArticleService
             return false;
         }
     }
+
+    public function countArticle(){
+        $dbConn = new DBConnection();
+        $conn = $dbConn->getConnection();
+
+        $sql = "SELECT COUNT(ma_bviet) as count FROM baiviet";
+        $result = $conn ->query($sql);
+        while ($row = $result->fetch()) {
+            $count = strval($row['count']);
+        }
+        return $count;
+    }
 }
 ?>

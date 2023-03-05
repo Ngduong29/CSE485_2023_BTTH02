@@ -80,5 +80,16 @@ class AuthorService{
 
 
     }
+    public function countAuthor(){
+        $dbConn = new DBConnection();
+        $conn = $dbConn->getConnection();
+
+        $sql = "SELECT COUNT(ma_tgia) as count FROM tacgia";
+        $result = $conn ->query($sql);
+        while ($row = $result->fetch()) {
+            $count = strval($row['count']);
+        }
+        return $count;
+    }
     
 }

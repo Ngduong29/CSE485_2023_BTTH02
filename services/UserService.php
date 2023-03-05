@@ -36,6 +36,21 @@ class UserService{
         }
 
     }
+    public function checkLogin($username){
+        $dbConn = new DBConnection();
+        $conn = $dbConn->getConnection();
+
+        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $result = $conn ->query($sql);
+        $users = [];
+        while($row = $result->fetch()){
+            $user = new User($row['id'], $row['username'], $row['password'], $row['role']);
+            array_push($users,$user);
+        }
+
+    
+        return $users;
+    }
 
     public function findUserById($id){
         $dbConn = new DBConnection();
@@ -85,6 +100,17 @@ class UserService{
         }
 
 
+    }
+    public function countUser(){
+        $dbConn = new DBConnection();
+        $conn = $dbConn->getConnection();
+
+        $sql = "SELECT COUNT(id) as count FROM users";
+        $result = $conn ->query($sql);
+        while ($row = $result->fetch()) {
+            $count = strval($row['count']);
+        }
+        return $count;
     }
     
 }

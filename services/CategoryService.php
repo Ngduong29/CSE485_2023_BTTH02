@@ -74,6 +74,17 @@ class CategoryService{
 
 
     }
+    public function countCategory(){
+        $dbConn = new DBConnection();
+        $conn = $dbConn->getConnection();
+
+        $sql = "SELECT COUNT(ma_tloai) as count FROM theloai";
+        $result = $conn ->query($sql);
+        while ($row = $result->fetch()) {
+            $count = strval($row['count']);
+        }
+        return $count;
+    }
     
 }
 ?>
