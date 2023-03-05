@@ -53,55 +53,46 @@
 
     </header>
     <main class="container mt-5 mb-5">
-        <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
-        <div class="row">
+    <div class="row">
             <div class="col-sm">
-                <a href="index.php?controller=author&action=add" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tên tác giả</th>
-                            <th scope="col">Hình tác giả</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $count = 0;
-                        foreach($authors as $author){
-                            $count++;
-                                ?>
-                                <tr>
-                                    <th scope="row">
-                                        <?= $count ?>
-                                    </th>
-                                    <td>
-                                        <?= $author->getTen_tgia() ?>
-                                    </td>
-                                    <td>
-                                        <?= $author->getHinh_tgia() ?>
-                                    </td>
-                                    <td>
-                                        <a href="index.php?controller=author&action=edit&id=<?= $author->getMa_tgia() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    </td>
-                                    <td>
-                                        <a onclick="return confirm('Ban co muon xoa khong');"
-                                            href="/btth02v2/index.php?controller=author&action=delete&id= <?= $author->getMa_tgia() ?>"><i class="fa-solid fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin tác giả</h3>
+                <?php foreach ($findUser as $user): extract($user); ?>
+                <form action="index.php?controller=user&action=edit&id=<?=$id ?>" method="post">
+                        <div class="input-group mt-3 mb-3">
+                            <span class="input-group-text" id="lblTgId">Mã tác giả</span>
+                            <input type="text" class="form-control" name="id" id="id"
+                                value="<?= $id ?>" readonly>
+                        </div>
 
-                                <?php
-                            }
-                        
-                        ?>
+                        <div class="input-group mt-3 mb-3">
+                            <span class="input-group-text" id="lblTgName">Username</span>
+                            <input type="text" class="form-control" name="username" id="username"
+                                value="<?= $username ?>" style="border-top-right-radius: 7px; border-bottom-right-radius:7px">
+                                </div>         
 
-                    </tbody>
-                </table>
+                        <div class="input-group mt-3 mb-3">
+                            <span class="input-group-text" id="lblTgName">Password</span>
+                            <input type="text" class="form-control" name="password" id="password"
+                                value="<?= $password ?>" style="border-top-right-radius: 7px; border-bottom-right-radius:7px">
+                                </div>
+                                
+                        <div class="input-group mt-3 mb-3">
+                            <span class="input-group-text" id="lblTgName">role</span>
+                            <select class="form-select" aria-label="Default select example" id="role" name="role" value="<?= $role ?>"> 
+                            <?php foreach($enum_list as $enum_role){
+                               $selected = ($enum_role == $role) ? 'selected' : '';
+                               echo "<option value='" .$enum_role."'$selected>" .$enum_role. "</option>";
+                            }?>                                      
+                            </select> 
+                        <?php endforeach; ?>
+                        <div class="form-group  float-end" style = "position:absolute; top:50px; left:1130px" >
+                            <input type="submit" name="save" value="Lưu lại" class="btn btn-success">
+                            <a href="index.php?controller=user&action=list" class="btn btn-warning ">Quay lại</a>
+                        </div>
+                </form>
             </div>
         </div>
-    </main>
+        </main>
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2"
         style="height:80px">
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>

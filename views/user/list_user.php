@@ -56,13 +56,14 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="index.php?controller=author&action=add" class="btn btn-success">Thêm mới</a>
+                <a href="index.php?controller=user&action=add" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Tên tác giả</th>
-                            <th scope="col">Hình tác giả</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Role</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
@@ -70,7 +71,7 @@
                     <tbody>
                         <?php
                         $count = 0;
-                        foreach($authors as $author){
+                        foreach($users as $user){
                             $count++;
                                 ?>
                                 <tr>
@@ -78,17 +79,20 @@
                                         <?= $count ?>
                                     </th>
                                     <td>
-                                        <?= $author->getTen_tgia() ?>
+                                        <?= $user->getUsername() ?>
                                     </td>
                                     <td>
-                                        <?= $author->getHinh_tgia() ?>
+                                        <?= $user->getPassword() ?>
                                     </td>
                                     <td>
-                                        <a href="index.php?controller=author&action=edit&id=<?= $author->getMa_tgia() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <?= $user->getRole() ?>
+                                    </td>
+                                    <td>
+                                        <a href="index.php?controller=user&action=edit&id=<?= $user->getId() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </td>
                                     <td>
                                         <a onclick="return confirm('Ban co muon xoa khong');"
-                                            href="/btth02v2/index.php?controller=author&action=delete&id= <?= $author->getMa_tgia() ?>"><i class="fa-solid fa-trash"></i></a>
+                                            href="/CSE485_2023_BTTH02/index.php?controller=user&action=delete&id= <?= $user->getId() ?>"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
 
