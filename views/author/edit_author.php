@@ -56,49 +56,26 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="index.php?controller=author&action=add" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tên tác giả</th>
-                            <th scope="col">Hình tác giả</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $count = 0;
-                        foreach($authors as $author){
-                            $count++;
-                                ?>
-                                <tr>
-                                    <th scope="row">
-                                        <?= $count ?>
-                                    </th>
-                                    <td>
-                                        <?= $author->getTen_tgia() ?>
-                                    </td>
-                                    <td>
-                                        <?= $author->getHinh_tgia() ?>
-                                    </td>
-                                    <td>
-                                        <a href="index.php?controller=author&action=edit&id=<?= $author->getMa_tgia() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    </td>
-                                    <td>
-                                        <a onclick="return confirm('Ban co muon xoa khong');"
-                                            href="/btth02v2/index.php?controller=author&action=delete&id= <?= $author->getMa_tgia() ?>"><i class="fa-solid fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin tác giả</h3>
+                <?php foreach ($findAuthor as $author): extract($author); ?>
+                <form action="index.php?controller=author&action=edit&id=<?=$ma_tgia ?>" method="post">
+                        <div class="input-group mt-3 mb-3">
+                            <span class="input-group-text" id="lblTgId">Mã tác giả</span>
+                            <input type="text" class="form-control" name="ma_tgia" id="ma_tgia"
+                                value="<?= $ma_tgia ?>" readonly>
+                        </div>
 
-                                <?php
-                            }
-                        
-                        ?>
-
-                    </tbody>
-                </table>
+                        <div class="input-group mt-3 mb-3">
+                            <span class="input-group-text" id="lblTgName">Tên tác giả</span>
+                            <input type="text" class="form-control" name="ten_tgia" id="ten_gia"
+                                value="<?= $ten_tgia ?>" style="border-top-right-radius: 7px; border-bottom-right-radius:7px"> 
+                       </div>                     
+                        <?php endforeach; ?>
+                        <div class="form-group float-end">
+                            <input type="submit" name="save" value="Lưu lại" class="btn btn-success">
+                            <a href="index.php?controller=author&action=list" class="btn btn-warning ">Quay lại</a>
+                        </div>
+                </form>
             </div>
         </div>
     </main>
